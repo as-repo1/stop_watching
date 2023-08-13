@@ -21,10 +21,6 @@ This web project features a sleek and minimalistic digital stopwatch, allowing u
 
 - **Responsive Design:** The design is responsive and adapts well to various screen sizes and devices. The `max-width` property guarantees that the stopwatch container maintains a suitable width on larger screens.
 
-## Intended Use
-
-This minimalist digital stopwatch serves as a straightforward yet visually appealing tool for tracking time intervals. It is versatile and can be employed for diverse scenarios, including timing activities, workouts, cooking, and other situations demanding precise time tracking.
-
 ## Technologies Used
 
 - **HTML5:** Establishes the webpage's structure and layout.
