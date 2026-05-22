@@ -1,26 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Stopwatch</title>
-
-	<link rel="stylesheet" href="main.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A minimal, modern stopwatch with lap tracking, keyboard shortcuts, and millisecond precision." />
+  <title>StopWatch — Minimal Timer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="main.css" />
 </head>
 <body>
-	
-	<div class="watch">
-		<div class="time">
-			00:00:00
-		</div>
-		<div class="controls">
-			<button id="start">Start</button>
-			<button id="stop">Stop</button>
-			<button id="reset">Reset</button>
-		</div>
-	</div>
 
-	<script src="main.js"></script>
+  <!-- Ambient background orbs -->
+  <div class="bg-orb orb-1" aria-hidden="true"></div>
+  <div class="bg-orb orb-2" aria-hidden="true"></div>
+
+  <main class="app" role="main">
+    <header class="app-header">
+      <h1 class="app-title">Stopwatch</h1>
+      <div class="status-badge" id="status-badge" aria-live="polite">Idle</div>
+    </header>
+
+    <!-- Timer ring & display -->
+    <section class="watch-container" aria-label="Stopwatch display">
+      <div class="ring-wrapper" aria-hidden="true">
+        <svg class="progress-ring" viewBox="0 0 220 220">
+          <circle class="ring-track" cx="110" cy="110" r="100" />
+          <circle class="ring-fill" id="ring-fill" cx="110" cy="110" r="100" />
+        </svg>
+      </div>
+
+      <div class="time-display" aria-label="Elapsed time">
+        <div class="time-main" id="time-main" aria-live="off">00:00</div>
+        <div class="time-ms" id="time-ms">00</div>
+      </div>
+    </section>
+
+    <!-- Control buttons -->
+    <section class="controls" aria-label="Stopwatch controls">
+      <button id="btn-lap" class="btn btn-secondary" disabled aria-label="Record lap (L)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2v10l4 2"/><circle cx="12" cy="12" r="10"/></svg>
+        Lap
+      </button>
+      <button id="btn-start" class="btn btn-primary" aria-label="Start stopwatch (Space)">
+        <svg class="icon-play" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="5,3 19,12 5,21"/></svg>
+        <svg class="icon-pause hidden" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+        <span id="btn-start-label">Start</span>
+      </button>
+      <button id="btn-reset" class="btn btn-secondary" aria-label="Reset stopwatch (R)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+        Reset
+      </button>
+    </section>
+
+    <!-- Lap list -->
+    <section class="laps-section" id="laps-section" aria-label="Lap times" hidden>
+      <div class="laps-header">
+        <span class="laps-title">Laps</span>
+        <button class="laps-clear-btn" id="btn-clear-laps" aria-label="Clear all laps">Clear</button>
+      </div>
+      <ol class="laps-list" id="laps-list" reversed></ol>
+    </section>
+
+    <!-- Keyboard shortcuts hint -->
+    <footer class="shortcuts" aria-label="Keyboard shortcuts">
+      <kbd>Space</kbd> Start / Pause &nbsp;·&nbsp;
+      <kbd>L</kbd> Lap &nbsp;·&nbsp;
+      <kbd>R</kbd> Reset
+    </footer>
+  </main>
+
+  <script src="main.js"></script>
 </body>
 </html>
